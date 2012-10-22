@@ -23,7 +23,7 @@
 
 int main(int argc, char **argv)
 {
-	AnimalFactory factory;
+	AnimalFactory factory("");
 
 	return EXIT_SUCCESS;
 }

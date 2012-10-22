@@ -18,12 +18,15 @@
 #ifndef ANIMAL_FACTORY_H
 #define ANIMAL_FACTORY_H
 
+#include <libxml/parser.h>
+#include <libxml/tree.h>
+
+
 #include <string>
 #include <vector>
 #include <stdexcept>
 
 class Animal;
-class xmlNode;
 
 class AnimalFactory
 {
@@ -31,9 +34,9 @@ class AnimalFactory
 		AnimalFactory(std::string config_name);
 		virtual ~AnimalFactory();
 		std::vector<std::string> getAnimalsList();
-		static *Animal getAnimal(std::string animal_type) throw std::invalid_argument;
+		//static *Animal getAnimal(std::string animal_type) throw std::invalid_argument;
 	private:
-		std::vector<std::string> getAnimalsVector(xmlNode *node);
+		void getAnimalsVector(xmlNode *node);
 		std::vector<std::string> m_animals;
 };
 #endif

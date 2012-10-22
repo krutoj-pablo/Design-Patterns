@@ -16,10 +16,9 @@
  * =====================================================================================
 */
 
-#include <libxml/parser.h>
-#include <libxml/tree.h>
-
+#include <cstring>
 #include <iostream>
+#include <algorithm>
 
 #include "animal_factory.h"
 
@@ -31,7 +30,9 @@ AnimalFactory::AnimalFactory(std::string config_name)
 	doc = xmlReadFile(config_name.c_str(), NULL, 0);
 	if(doc == NULL)
 		std::cout << "Ivalid xml configuration file" << std::endl;
-	root_element = xmlGetRootElement(doc);
+	rootElement = xmlDocGetRootElement(doc);
+	getAnimalsVector(rootElement);
+	
 	xmlFreeDoc(doc);
 	xmlCleanupParser();
 }
@@ -39,17 +40,17 @@ AnimalFactory::AnimalFactory(std::string config_name)
 AnimalFactory::~AnimalFactory()
 {}
 
-std::vector<std::string> AnimalFactory::getAnimalsVector(xmlNode *node)
+void AnimalFactory::getAnimalsVector(xmlNode *node)
 {
 	xmlNode *cur_node = NULL;
 	std::vector<std::string> animal_vector;
 
-	while(cur_node = node; cur_node != NULL; cur_node = cur_node->next)
+	for(cur_node = node; cur_node != NULL; cur_node = cur_node->next)
 	{
-		if(cur_node == XML_ELEMENT_NODE && cur_node->name == "animals")
+		if(cur_node->type == XML_ELEMENT_NODE && strcmp((char *)cur_node->name, "animals") == 0)
 		{
-			while((xmlNode *animal_node = cur_node); animal_node != NULL; animal_node=animal_node->next)
-				animal_vector.push_back(animal_node->content);
+			for(xmlNode *animal_node = cur_node; animal_node != NULL; animal_node=animal_node->next)
+				animal_vector.push_back(std::string((char *)animal_node->content));
 		}
 		else
 			getAnimalsVector(cur_node->children);
