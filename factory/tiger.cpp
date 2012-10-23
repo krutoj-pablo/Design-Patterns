@@ -28,3 +28,15 @@ void Tiger::makeSound() const
 {
 	std::cout << "Tiger is making super loud sound " << std::endl;
 }
+
+extern "C"
+{
+	Tiger* create()
+	{
+		return new Tiger;
+	}
+	void destroy(Tiger *p)
+	{
+		delete p;
+	}
+}

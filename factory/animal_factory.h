@@ -33,10 +33,13 @@ class AnimalFactory
 	public:
 		AnimalFactory(std::string config_name);
 		virtual ~AnimalFactory();
+
 		std::vector<std::string> getAnimalsList();
-		//static *Animal getAnimal(std::string animal_type) throw std::invalid_argument;
+		void readAnimalsVector();
+		void printAnimals() const;
+		Animal* createAnimal(std::string animal_type);
 	private:
-		void getAnimalsVector(xmlNode *node);
+		void readAnimalsVector(xmlNode *node);
 		std::vector<std::string> m_animals;
 };
 #endif

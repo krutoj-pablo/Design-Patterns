@@ -23,7 +23,8 @@
 
 int main(int argc, char **argv)
 {
-	AnimalFactory factory("");
+	AnimalFactory factory("animals.xml");
+	factory.printAnimals();
 
 	return EXIT_SUCCESS;
 }

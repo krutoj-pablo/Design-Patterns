@@ -27,5 +27,9 @@ class Tiger : public Animal
 		virtual void run() const ;
 		virtual void makeSound() const;
 };
+
+typedef Tiger* create_t;
+typedef void destroy_t(Tiger *);
+
 #endif
 

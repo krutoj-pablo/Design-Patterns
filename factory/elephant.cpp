@@ -25,7 +25,19 @@ void Elephant::run() const
 	std::cout << "Elephant is running slowly" << std::endl;
 }
 
-void Tiger::makeSound() const
+void Elephant::makeSound() const
 {
 	std::cout << "Tiger is making super loud and scary sound" << std::endl;
+}
+
+extern "C"
+{
+	Elephant* create()
+	{
+		return new Elephant;
+	}
+	void destroy(Elephant *p)
+	{
+		delete p;
+	}
 }
