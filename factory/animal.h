@@ -26,4 +26,6 @@ class Animal
 		virtual void makeSound() const = 0;
 };
 
+typedef Animal* create_t();
+typedef void destroy_t(Animal *);
 #endif
