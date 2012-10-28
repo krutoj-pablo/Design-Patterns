@@ -31,12 +31,14 @@ void Tiger::makeSound() const
 
 extern "C"
 {
-	Tiger* create()
+	Animal* create()
 	{
+		std::cout << "Tiger created" << std::endl;
 		return new Tiger;
 	}
-	void destroy(Tiger *p)
+	void destroy(Animal *p)
 	{
+		std::cout << "Tiger destroyed" << std::endl;
 		delete p;
 	}
 }
