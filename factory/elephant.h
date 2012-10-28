@@ -26,8 +26,4 @@ class Elephant: public Animal
 	virtual void run() const;
 	virtual void makeSound() const;
 };
-
-typedef Elephant* create_t;
-typedef void destroy_t(Elephant *);
-
 #endif

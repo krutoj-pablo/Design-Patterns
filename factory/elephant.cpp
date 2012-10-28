@@ -32,11 +32,11 @@ void Elephant::makeSound() const
 
 extern "C"
 {
-	Elephant* create()
+	Animal* create()
 	{
 		return new Elephant;
 	}
-	void destroy(Elephant *p)
+	void destroy(Animal *p)
 	{
 		delete p;
 	}
