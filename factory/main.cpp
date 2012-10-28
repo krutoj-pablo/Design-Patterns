@@ -20,11 +20,20 @@
 #include <cstdio>
 
 #include "animal_factory.h"
+#include "animal.h"
 
 int main(int argc, char **argv)
 {
 	AnimalFactory factory("animals.xml");
 	factory.printAnimals();
 
+	Animal *a = factory.createAnimal("tiger");
+	a->makeSound();
+	a->run();
+	Animal *b = factory.createAnimal("elephant");
+	b->makeSound();
+	b->run();
+	delete a;
+	delete b;
 	return EXIT_SUCCESS;
 }
