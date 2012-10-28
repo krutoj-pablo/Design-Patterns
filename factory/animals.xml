@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <factory>
 	<animals>
-		<animal>tiger</animal>
-		<animal>elephant</animal>
+		<animal lib="libtiger.so.1.0">tiger</animal>
+		<animal lib="libelephant.so.1.0">elephant</animal>
 	</animals>
 </factory>
