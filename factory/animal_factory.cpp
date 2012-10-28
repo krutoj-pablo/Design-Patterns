@@ -35,7 +35,7 @@ AnimalFactory::AnimalFactory(std::string config_name)
 	if(doc == NULL)
 		std::cout << "Ivalid xml configuration file" << std::endl;
 	rootElement = xmlDocGetRootElement(doc);
-	readAnimalsVector(rootElement);
+	readAnimalsMap(rootElement);
 	
 	xmlFreeDoc(doc);
 	xmlCleanupParser();
@@ -44,38 +44,45 @@ AnimalFactory::AnimalFactory(std::string config_name)
 AnimalFactory::~AnimalFactory()
 {}
 
-std::vector<std::string> AnimalFactory::getAnimalsList()
+std::map<std::string, std::string> AnimalFactory::getAnimalsMap() const
 {
 	return m_animals;
 }
 Animal* AnimalFactory::createAnimal(std::string animal_name)
 {
-	Animal *a;
-	std::vector<std::string>::iterator iter = std::find(m_animals.begin(), m_animals.end(), animal_name);
-	if(iter != m_animals.end())
+	create_t* mkr;
+	char* error;
+	
+	Animal *animal;
+	
+	if(m_animals.find(animal_name) != m_animals.end())
 	{	
-		std::string dl_name = *iter + std::string(".so");
-		(Animal *) fn * (void);
+		std::string dl_name = m_animals[animal_name];
 
-		void *lib_handle = dlopen(dl_name.c_str(), RTD_LAZY);
+		void *lib_handle = dlopen(dl_name.c_str(), RTLD_LAZY);
 		if(!lib_handle)
 			throw std::invalid_argument("Shared object not found");
 		else
 		{
-			fn = (create_t *) dlsym(lib_handle, "create");
-			a = (*fn);
-			dlclose(lib_handle);
+			mkr = reinterpret_cast<create_t *>(dlsym(lib_handle, "create"));
+			if((error = dlerror()) != NULL)
+			{
+				throw "Unable to ceate an object";
+			}
+			animal = (*mkr)();
 		}
 	}
-	return a;
+	return animal;
 }
 
-void AnimalFactory::printAnimals() const
+void AnimalFactory::printAnimals()
 {
-	std::copy(m_animals.begin(), m_animals.end(), std::ostream_iterator<std::string>(std::cout, "\n"));
+	std::map<std::string, std::string>::iterator iter = m_animals.begin();
+	for(; iter != m_animals.end(); iter++)
+		std::cout << iter->first << " " << iter->second << std::endl;;
 }
 
-void AnimalFactory::readAnimalsVector(xmlNode *node)
+void AnimalFactory::readAnimalsMap(xmlNode *node)
 {
 	xmlNode *cur_node = NULL;
 
@@ -85,11 +92,19 @@ void AnimalFactory::readAnimalsVector(xmlNode *node)
 		{
 			xmlNode *animal_node = NULL;
 			for(animal_node = cur_node->children; animal_node; animal_node=animal_node->next)
+			{
 				if(animal_node->type == XML_ELEMENT_NODE && xmlStrcmp(animal_node->name, (const xmlChar *)"animal") == 0)
-					m_animals.push_back(std::string((char *)xmlNodeGetContent(animal_node)));
+				{
+					char *animal_name = reinterpret_cast<char *>(xmlNodeGetContent(animal_node));
+					char *animal_lib = reinterpret_cast<char *>(xmlGetProp(animal_node, (const xmlChar *)"lib"));
+					m_animals.insert(std::make_pair<std::string, std::string>(std::string(animal_name), std::string(animal_lib)));
+					xmlFree(animal_name);
+					xmlFree(animal_lib);
+				}
+			}
 		}
 		else
-			readAnimalsVector(cur_node->children);
+			readAnimalsMap(cur_node->children);
 	}
 }
 

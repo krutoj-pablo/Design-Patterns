@@ -23,7 +23,7 @@
 
 
 #include <string>
-#include <vector>
+#include <map>
 #include <stdexcept>
 
 class Animal;
@@ -33,13 +33,11 @@ class AnimalFactory
 	public:
 		AnimalFactory(std::string config_name);
 		virtual ~AnimalFactory();
-
-		std::vector<std::string> getAnimalsList();
-		void readAnimalsVector();
-		void printAnimals() const;
+		std::map<std::string, std::string> getAnimalsMap() const;
+		void printAnimals();
 		Animal* createAnimal(std::string animal_type);
 	private:
-		void readAnimalsVector(xmlNode *node);
-		std::vector<std::string> m_animals;
+		void readAnimalsMap(xmlNode *node);
+		std::map<std::string, std::string> m_animals;
 };
 #endif
