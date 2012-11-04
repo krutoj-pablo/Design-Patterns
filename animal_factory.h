@@ -32,6 +32,6 @@ class AnimalFactory
 		Animal *createAnimal(std::string name);
 	private:
 		std::map<std::string, Animal *> m_animalsMap;
-}
+};
 
 #endif

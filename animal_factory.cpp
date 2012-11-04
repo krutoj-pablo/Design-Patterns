@@ -15,10 +15,11 @@
  *
  * =====================================================================================
  */
-
+#include "animal.h"
 #include "tiger.h"
 #include "elephant.h"
 #include "human.h"
+#include "animal_factory.h"
 
 AnimalFactory::AnimalFactory()
 {
@@ -31,7 +32,7 @@ AnimalFactory::~AnimalFactory()
 {
 	std::map<std::string, Animal*>::iterator iter = m_animalsMap.begin();
 	for(; iter != m_animalsMap.end(); iter++)
-		delete iter->second();
+		delete iter->second;
 }
 
 Animal* AnimalFactory::createAnimal(std::string name)
