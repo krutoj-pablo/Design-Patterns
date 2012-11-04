@@ -35,5 +35,5 @@ Animal *Human::clone()
 
 void Human::print()
 {
-	std::cout << "Human number is: " << m_iHumanNumber << "Tiger name is: " << m_strHumanName << std::endl;
+	std::cout << "Human number is: " << m_iHumanNumber <<  " Human name is: " << m_strHumanName << std::endl;
 }

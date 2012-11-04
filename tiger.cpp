@@ -34,5 +34,5 @@ Animal *Tiger::clone()
 
 void Tiger::print()
 {
-	std::cout << "Tiger number is: " << m_iTigerNumber << "Tiger name is: " << m_strTigerName << std::endl;
+	std::cout << "Tiger number is: " << m_iTigerNumber << " Tiger name is: " << m_strTigerName << std::endl;
 }

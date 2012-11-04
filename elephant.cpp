@@ -37,5 +37,5 @@ Animal *Elephant::clone()
 
 void Elephant::print()
 {
-	std::cout << "Elephant number is: " << m_iElephantNumber << "Tiger name is: " << m_strElephantName << std::endl;
+	std::cout << "Elephant number is: " << m_iElephantNumber << " Elephant name is: " << m_strElephantName << std::endl;
 }
