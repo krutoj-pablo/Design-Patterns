@@ -24,7 +24,7 @@ Tiger::Tiger(std::string name, int number):m_strTigerName(name), m_iTigerNumber(
 Tiger::Tiger(Tiger &t)
 {
 	m_strTigerName = t.m_strTigerName;
-	m_iTigerNumber = t.m_iTigerNumber
+	m_iTigerNumber = t.m_iTigerNumber;
 }
 
 Animal *Tiger::clone()
