@@ -17,9 +17,9 @@
  */
 #include <iostream>
 
-#include "animal.h"
+#include "elephant.h"
 
-Human::Human(std::string name, int number):m_strElephantName(name), m_iElephantNumber(number)
+Elephant::Elephant(std::string name, int number):m_strElephantName(name), m_iElephantNumber(number)
 {
 }
 
@@ -35,7 +35,7 @@ Animal *Elephant::clone()
 	return new Elephant(*this);
 }
 
-void Elephant::Elephant()
+void Elephant::print()
 {
 	std::cout << "Elephant number is: " << m_iElephantNumber << "Tiger name is: " << m_strElephantName << std::endl;
 }
