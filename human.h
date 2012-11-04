@@ -25,11 +25,11 @@
 class Human : public Animal
 {
 	public:
-		Human();
+		Human(std::string, int);
 		Human(Human &h);
 		virtual ~Human(){};
 		virtual Animal *clone();
-		virtual print();
+		virtual void print();
 	private:
 		std::string m_strHumanName;
 		int m_iHumanNumber;

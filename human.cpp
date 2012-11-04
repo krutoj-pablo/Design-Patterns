@@ -15,6 +15,7 @@
  *
  * =====================================================================================
  */
+#include <iostream>
 #include "human.h"
 
 Human::Human(std::string name, int number):m_strHumanName(name), m_iHumanNumber(number)
@@ -32,7 +33,7 @@ Animal *Human::clone()
 	return new Human(*this);
 }
 
-void Human::Human()
+void Human::print()
 {
 	std::cout << "Human number is: " << m_iHumanNumber << "Tiger name is: " << m_strHumanName << std::endl;
 }
