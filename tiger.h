@@ -26,7 +26,7 @@
 class Tiger: public Animal
 {
 	public:
-		Tiger();
+		Tiger(std::string, int);
 		Tiger(Tiger &);
 		virtual ~Tiger(){};
 		virtual Animal *clone();
