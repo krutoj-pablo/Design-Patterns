@@ -26,6 +26,7 @@
 class Tiger: public Animal
 {
 	public:
+		Tiger();
 		Tiger(Tiger &);
 		virtual ~Tiger(){};
 		virtual Animal *clone();

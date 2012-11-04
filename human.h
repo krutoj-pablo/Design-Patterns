@@ -25,6 +25,7 @@
 class Human : public Animal
 {
 	public:
+		Human();
 		Human(Human &h);
 		virtual ~Human(){};
 		virtual Animal *clone();

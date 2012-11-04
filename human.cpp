@@ -15,6 +15,11 @@
  *
  * =====================================================================================
  */
+#include "human.h"
+
+Human::Human(std::string name, int number):m_strHumanName(name), m_iHumanNumber(number)
+{
+}
 
 Human::Human(Human &e)
 {

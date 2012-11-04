@@ -15,8 +15,14 @@
  *
  * =====================================================================================
  */
+#include <iostream>
 
 #include "animal.h"
+
+Human::Human(std::string name, int number):m_strElephantName(name), m_iElephantNumber(number)
+{
+}
+
 
 Elephant::Elephant(Elephant &e)
 {

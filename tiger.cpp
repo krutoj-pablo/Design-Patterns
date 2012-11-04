@@ -16,9 +16,11 @@
  * =====================================================================================
  */
 #include <iostream>
-
 #include "tiger.h"
 
+Tiger::Tiger(std::string name, int number):m_strTigerName(name), m_iTigerNumber(number)
+{
+}
 Tiger::Tiger(Tiger &t)
 {
 	m_strTigerName = t.m_strTigerName;

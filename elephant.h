@@ -18,15 +18,21 @@
 #ifndef ELEPHANT_H
 #define ELEPHANT_H
 
+#include <string>
+
 #include "animal.h"
 
 class Elephant : public Animal
 {
 	public:
+		Elephant();
 		Elephant(Elephant &e);
 		virtual ~Elephant() {};
 		virtual Animal *clone();
 		virtual void print();
+	private:
+		std::string m_strElephantName;
+		int m_iElephantNuber;
 };
 #endif
 
