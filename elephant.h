@@ -25,14 +25,14 @@
 class Elephant : public Animal
 {
 	public:
-		Elephant();
+		Elephant(std::string, int);
 		Elephant(Elephant &e);
 		virtual ~Elephant() {};
 		virtual Animal *clone();
 		virtual void print();
 	private:
 		std::string m_strElephantName;
-		int m_iElephantNuber;
+		int m_iElephantNumber;
 };
 #endif
 
